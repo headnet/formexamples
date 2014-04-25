@@ -40,6 +40,8 @@ setup(name='headnet.formexamples',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.app.z3cform',
+          'z3c.saconfig',
           # -*- Extra requirements: -*-
       ],
       extras_require={'test': ['plone.app.testing']},
