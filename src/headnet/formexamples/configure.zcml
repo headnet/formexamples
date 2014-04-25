@@ -3,11 +3,13 @@
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:db="http://namespaces.zope.org/db"
     i18n_domain="headnet.formexamples">
 
   <five:registerPackage package="." initialize=".initialize" />
 
   <includeDependencies package="." />
+  <include package="plone.app.z3cform"/>
 
   <genericsetup:registerProfile
       name="default"
@@ -16,9 +18,29 @@
       description="Installs the headnet.formexamples package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  <!-- -*- extra stuff goes here -*- -->
+
+  <genericsetup:importStep
+      name="headnet.formexamples.various"
+      title="headnet.formexamples: miscellaneous import steps"
+      description="Various import steps that are not handled by GS import/export handlers."
+      handler="headnet.formexamples.setuphandlers.setupVarious">
+  </genericsetup:importStep>
 
   <include package=".browser" />
-  
+
+  <include package="z3c.saconfig" file="meta.zcml"/>
+
+  <!-- for debugging, with sql echo: -->
+  <!-- <db:engine name="headnet.formexamples" url="mysql://demouser:12345@localhost/demo" convert_unicode="true" pool_recycle="3600" echo="true"/> -->
+
+  <!-- Local DB: (the normal case) -->
+  <db:engine name="headnet.formexamples" url="mysql://demouser:12345@localhost/demo" convert_unicode="true" pool_recycle="3600"/>
+
+  <!-- From developer machine to Live DB via tunnel on port 3313 -
+       do not change data! And do not upload this config to server. -->
+  <!--   <db:engine name="headnet.formexamples" url="mysql://demouser:12345@127.0.0.1:3307/demo" convert_unicode="true" pool_recycle="3600"/> -->
+
+  <db:session name="headnet.formexamples" engine="headnet.formexamples" />
+
 
 </configure>
