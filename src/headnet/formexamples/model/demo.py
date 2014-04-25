@@ -42,9 +42,9 @@ class Demo(Base):
     field1 = Column(String(500), nullable=False)
     field2 = Column(Boolean, default=False)
 
-    children = relationship("DemoChild",
-                              order_by="DemoChild.row_id",
-                              backref=backref('parent'))
+    # children = relationship("DemoChild",
+    #                           order_by="DemoChild.row_id",
+    #                           backref=backref('parent'))
 
     created = Column(DateTime, default=functions.now())
     edited = Column(DateTime, onupdate=functions.current_timestamp())

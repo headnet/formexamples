@@ -13,3 +13,6 @@ and perhaps using angular.
 
 
 
+todo:
+1) fix crud std templates (shown without plone stuff)
+2) fix crud templates, header level etc

@@ -5,12 +5,10 @@
   <include package="plone.browserlayer" />
 
   <browser:page
-      for="*"
-      name="example_view"
-      class=".exampleview.ExampleView"
-      template="exampleview.pt"
-      allowed_interface=".exampleview.IExampleView"
-      permission="zope.Public"
+    for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="demo-crud"
+      class=".demo_crud_form.DemoCrudFormView"
+      permission="cmf.ManagePortal"
       layer="..interfaces.IHeadnetFormexamplesLayer"
       />
 
